@@ -1,0 +1,5 @@
+import * as React from 'react'; import { cn } from '@/lib/utils';
+type Variant='default'|'outline'|'ghost'|'secondary'; type Size='default'|'sm'|'lg';
+const styles:Record<Variant,string>={default:'bg-ocean text-white shadow-sm hover:bg-[#066873]',outline:'border border-slate-200 bg-white text-ink hover:bg-slate-50',ghost:'text-slate-600 hover:bg-slate-100',secondary:'bg-mint text-ocean hover:bg-[#c6e8e3]'}; const sizes:Record<Size,string>={default:'h-10 px-4',sm:'h-8 px-3 text-xs',lg:'h-11 px-5'};
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{variant?:Variant;size?:Size}
+export const Button=React.forwardRef<HTMLButtonElement,ButtonProps>(({className,variant='default',size='default',...props},ref)=><button className={cn('inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean disabled:pointer-events-none disabled:opacity-50',styles[variant],sizes[size],className)} ref={ref} {...props}/>); Button.displayName='Button';
